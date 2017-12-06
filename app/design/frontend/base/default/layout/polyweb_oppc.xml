@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <checkout_cart_index>
+        <reference name="head">
+            <action method="addJs"><file>mage/oppc/oppc.js</file></action>
+        </reference>
+    </checkout_cart_index>
+    <checkout_cart_index>
+        <reference name="footer">
+            <block type="core/template" name="oppc" template="polyweb_oppc/oppc.phtml">
+				<block type="Polyweb_Oppc_Block_Oppc_BillingShipping" name="oppc_billing_shipping" template="polyweb_oppc/oppc/billing_shipping.phtml" />
+				<block type="Polyweb_Oppc_Block_Oppc_ShippingMethod" name="oppc_shipping_method" template="polyweb_oppc/oppc/shipping_method.phtml" />
+				<block type="Polyweb_Oppc_Block_Oppc_Payment" name="oppc_payment" template="polyweb_oppc/oppc/payment.phtml">
+					<block type="checkout/onepage_payment_methods" name="checkout.payment.methods" as="methods" template="checkout/onepage/payment/info.phtml">
+                        <action method="setMethodFormTemplate"><method>purchaseorder</method><template>payment/form/purchaseorder.phtml</template></action>
+                    </block>
+				</block>
+				<block type="Polyweb_Oppc_Block_Oppc_Review" name="oppc_review" template="polyweb_oppc/oppc/review.phtml" />
+			</block>
+        </reference>
+    </checkout_cart_index>
+</layout>

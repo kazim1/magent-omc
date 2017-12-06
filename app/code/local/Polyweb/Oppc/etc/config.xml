@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Polyweb_Oppc>
+            <version>1.0.0</version>
+        </Polyweb_Oppc>
+    </modules>
+    <global>
+        <blocks>
+            <polyweb_oppc>
+                <class>Polyweb_Oppc_Block</class>
+            </polyweb_oppc>
+        </blocks>
+        <helpers>
+            <polyweb_oppc>
+                <class>Polyweb_Oppc_Helper</class>
+            </polyweb_oppc>
+        </helpers>
+        <events>
+            <sales_order_save_after>
+                <observers>
+                    <send_review_email>
+                        <class>Polyweb_Oppc_Model_Observer</class>
+                        <method>sendReviewEmail</method>
+                    </send_review_email>
+                </observers>
+            </sales_order_save_after>			
+		</events>
+    </global>
+    <frontend>
+		<routers>
+            <oppc>
+                <use>standard</use>
+                <args>
+                    <module>Polyweb_Oppc</module>
+                    <frontName>oppc</frontName>
+                </args>
+            </oppc>
+        </routers>
+        <layout>
+            <updates>
+                <polyweb_oppc>
+                    <file>polyweb_oppc.xml</file>
+                </polyweb_oppc>
+            </updates>
+        </layout>
+		
+	
+    </frontend>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Polyweb_Oppc before="Mage_Adminhtml">Polyweb_Oppc_Adminhtml</Polyweb_Oppc>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+</config>

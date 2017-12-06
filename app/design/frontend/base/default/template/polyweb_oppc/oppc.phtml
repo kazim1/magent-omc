@@ -1,0 +1,93 @@
+<script type="text/javascript">
+//<![CDATA[
+    var checkout = new Oppc({
+        progress: '<?php echo $this->getUrl('checkout/onepage/progress') ?>',
+        review: '<?php echo $this->getUrl('checkout/onepage/review') ?>',
+        saveMethod: '<?php echo $this->getUrl('checkout/onepage/saveMethod') ?>',
+        failure: '<?php echo $this->getUrl('checkout/cart') ?>'}
+    );
+//]]>
+</script>
+<div class="oppc-popup">
+	<div class="oppc-inner">
+	
+		<a href="#" onclick="jQuery.fn.oppcPopup(false)">&times;</a>
+	
+		<div class="oppc-step oppc-show" id="oppc-billing-shipping">
+			<?php echo $this->getChildHtml('oppc_billing_shipping'); ?>
+		</div>
+		<div class="oppc-step" id="oppc-shipping_method">
+			<?php echo $this->getChildHtml('oppc_shipping_method'); ?>
+		</div>
+		<div class="oppc-step" id="oppc-payment">
+			<?php echo $this->getChildHtml('oppc_payment'); ?>
+		</div>
+		<div class="oppc-step" id="oppc-review">
+			<?php echo $this->getChildHtml('oppc_review'); ?>
+		</div>
+	</div>
+</div>
+
+<style>
+
+	.oppc-cancel {
+		position: absolute;
+		top: 0;
+		right: 0;
+		font-size: 20px;
+		padding: 15px;
+		display: block;
+		width: 50px;
+		text-align: center;
+	}
+
+	.oppc-popup-body {
+		height: 100%;
+		overflow: hidden;
+	}
+	
+	.oppc-popup {
+		position: fixed;
+		background: rgba(255, 255, 255, 0.81);
+		width: 100%;
+		height: 100%;
+		left: 0;
+		top: 0;
+		overflow: auto;
+		display: none;
+	}
+	
+	.oppc-inner {
+		max-width: 850px;
+		margin: 10px auto;
+		padding: 2%;
+		background: #ffffff;
+	}
+	
+	.oppc-step {
+		display: none;
+	}
+
+	.oppc-show {
+		display: block;
+	}
+</style>
+
+<script>
+	
+	(function($) {
+		
+		var $oppc_popup = $('.oppc-popup');
+		
+		$.fn.oppcPopup = function (show) {
+			if( show ) {
+				$oppc_popup.show();
+				$('body').addClass('oppc-popup-body');
+			} else {
+				$oppc_popup.hide();
+				$('body').removeClass('oppc-popup-body');
+			}
+		}
+		
+	})(jQuery);
+</script>
